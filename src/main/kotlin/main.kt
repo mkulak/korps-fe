@@ -1,11 +1,22 @@
 import kotlinx.css.*
 import react.dom.*
+import styled.StyledComponents
 import styled.StyledComponents.css
 import styled.css
+import styled.injectGlobal
 import styled.styledDiv
 import kotlin.browser.document
 
 fun main() {
+    val styles = CSSBuilder().apply {
+        body {
+            margin(0.px)
+            padding(20.px)
+            fontSize = 20.px
+            fontFamily = "Open Sans"
+        }
+    }
+    StyledComponents.injectGlobal(styles.toString())
     render(document.getElementById("root")) {
         child(App::class) {}
     }
