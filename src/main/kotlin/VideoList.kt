@@ -13,21 +13,16 @@ class VideoList : RComponent<VideoListProps, RState>() {
         for (video in props.videos) {
             styledP {
                 css {
-                  margin = "20px"
+                    margin = "20px"
                 }
                 key = video.id.toString()
                 attrs {
-                    onMouseOverFunction = {
-                        props.onSelectVideo(video)
+                    onClickFunction = {
+//                    onMouseOverFunction = {
+                        props.onSelectVideo(video.id)
                     }
-//                    onClickFunction = {
-//                        window.alert("Clicked $video!")
-//                        setState {
-//                            selectedVideo = video
-//                        }
-//                    }
                 }
-                if (video == props.selectedVideo) {
+                if (video.id == props.selectedVideoId) {
                     +"▶ "
                 }
                 +"${video.speaker}: ${video.title}"
@@ -38,8 +33,8 @@ class VideoList : RComponent<VideoListProps, RState>() {
 
 external interface VideoListProps : RProps {
     var videos: List<Video>
-    var selectedVideo: Video?
-    var onSelectVideo: (Video) -> Unit
+    var selectedVideoId: Int?
+    var onSelectVideo: (Int) -> Unit
 }
 
 fun RBuilder.videoList(handler: VideoListProps.() -> Unit): ReactElement =
