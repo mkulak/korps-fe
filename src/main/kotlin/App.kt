@@ -5,10 +5,10 @@ import react.dom.h3
 class App : RComponent<RProps, AppState>() {
     override fun AppState.init() {
         val list = listOf(
-            Video(1, "Building and breaking things", "John Doe", "https://youtu.be/PsaFVLr8t4E", false),
-            Video(2, "The development process", "Jane Smith", "https://youtu.be/PsaFVLr8t4E", false),
-            Video(3, "The Web 7.0", "Matt Miller", "https://youtu.be/PsaFVLr8t4E", false),
-            Video(4, "Mouseless development", "Tom Jerry", "https://youtu.be/PsaFVLr8t4E", true)
+            Video(1, "Building and breaking things", "Super Dave", "https://www.youtube.com/watch?v=ifeI8ssnMms", false),
+            Video(2, "The development process", "Sky Life", "https://www.youtube.com/watch?v=4CKyQvBRYTE", false),
+            Video(3, "The Web 7.0", "Charlotte Newell", "https://www.youtube.com/watch?v=HUNURDgkBvs", false),
+            Video(4, "Mouseless development", "Andrey Breslav", "https://youtu.be/PsaFVLr8t4E", true)
         )
         videos = LinkedHashMap(list.associateBy { it.id })
     }

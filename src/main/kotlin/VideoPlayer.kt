@@ -37,10 +37,8 @@ class VideoPlayer : RComponent<VideoPlayerProps, RState>() {
                     +"Mark as watched"
                 }
             }
-            img {
-                attrs {
-                    src = "https://via.placeholder.com/640x360.png?text=Video+Player+Placeholder"
-                }
+            reactPlayer {
+                attrs.url = props.video.videoUrl
             }
         }
     }
