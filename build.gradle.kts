@@ -1,5 +1,7 @@
+val kotlinVersion = "1.4.10"
+
 plugins {
-    kotlin("js") version "1.3.72"
+    kotlin("js") version "1.4.10"
 }
 
 repositories {
@@ -8,28 +10,22 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    implementation(kotlin("stdlib-js"))
-
-    //React, React DOM + Wrappers (chapter 3)
-    implementation("org.jetbrains:kotlin-react:16.13.0-pre.94-kotlin-1.3.70")
-    implementation("org.jetbrains:kotlin-react-dom:16.13.0-pre.94-kotlin-1.3.70")
-    implementation(npm("react", "16.13.1"))
-    implementation(npm("react-dom", "16.13.1"))
-
-    //Kotlin Styled (chapter 3)
-    implementation("org.jetbrains:kotlin-styled:1.0.0-pre.94-kotlin-1.3.70")
-    implementation(npm("styled-components"))
-    implementation(npm("inline-style-prefixer"))
-
-    //Video Player (chapter 7)
-    implementation(npm("react-player"))
-
-    //Share Buttons (chapter 7)
-    implementation(npm("react-share"))
-
-    //Coroutines (chapter 8)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
+kotlin {
+    js {
+        browser()
+    }
 }
 
-kotlin.target.browser { }
+dependencies {
+    implementation("org.jetbrains:kotlin-react:16.13.1-pre.116-kotlin-$kotlinVersion")
+    implementation("org.jetbrains:kotlin-react-dom:16.13.1-pre.116-kotlin-$kotlinVersion")
+    implementation("org.jetbrains:kotlin-styled:5.2.0-pre.116-kotlin-$kotlinVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.8")
+    implementation(npm("react", "16.13.1"))
+    implementation(npm("react-dom", "16.13.1"))
+    implementation(npm("react-is", "16.13.1"))
+    implementation(npm("styled-components", "5.2.0"))
+    implementation(npm("inline-style-prefixer", "6.0.0"))
+    implementation(npm("react-player", "2.6.2"))
+    implementation(npm("react-share", "4.2.1"))
+}
