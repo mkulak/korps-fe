@@ -1,16 +1,18 @@
+import kotlinx.browser.window
+import kotlinx.coroutines.*
 import react.*
 import react.dom.h1
 import react.dom.h3
 
 class App : RComponent<RProps, AppState>() {
     override fun AppState.init() {
-        val list = listOf(
-            Video(1, "Building and breaking things", "Super Dave", "https://www.youtube.com/watch?v=ifeI8ssnMms", false),
-            Video(2, "The development process", "Sky Life", "https://www.youtube.com/watch?v=4CKyQvBRYTE", false),
-            Video(3, "The Web 7.0", "Charlotte Newell", "https://www.youtube.com/watch?v=HUNURDgkBvs", false),
-            Video(4, "Mouseless development", "Andrey Breslav", "https://youtu.be/PsaFVLr8t4E", true)
-        )
-        videos = LinkedHashMap(list.associateBy { it.id })
+        videos = LinkedHashMap()
+        MainScope().launch {
+            val list = fetchVideos()
+            setState {
+                videos = LinkedHashMap(list.associateBy { it.id })
+            }
+        }
     }
 
     override fun RBuilder.render() {
@@ -53,9 +55,27 @@ class App : RComponent<RProps, AppState>() {
             currentVideoId = videoId
         }
     }
+
 }
 
 external interface AppState : RState {
     var currentVideoId: Int?
     var videos: LinkedHashMap<Int, Video>
+}
+
+
+suspend fun fetchVideo(id: Int): Video =
+    window.fetch("https://my-json-server.typicode.com/kotlin-hands-on/kotlinconf-json/videos/$id")
+        .await()
+        .json()
+        .await()
+        .apply { asDynamic().watched = false }
+        .unsafeCast<Video>()
+
+suspend fun fetchVideos(): List<Video> = coroutineScope {
+    (1..25).map { id ->
+        async {
+            fetchVideo(id)
+        }
+    }.awaitAll()
 }

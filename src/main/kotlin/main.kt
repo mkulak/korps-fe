@@ -10,7 +10,7 @@ fun main() {
             padding(20.px)
             fontSize = 20.px
             fontFamily = "Open Sans"
-            backgroundColor = Color.red
+//            backgroundColor = Color.red
         }
     }
 

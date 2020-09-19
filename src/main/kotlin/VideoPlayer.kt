@@ -31,11 +31,8 @@ class VideoPlayer : RComponent<VideoPlayerProps, RState>() {
                         props.onWatchedButtonPressed(props.video)
                     }
                 }
-                if (props.video.watched) {
-                    +"Mark as unwatched"
-                } else {
-                    +"Mark as watched"
-                }
+                val title = if (props.video.watched) "Mark as unwatched" else "Mark as watched"
+                +title
             }
             styledDiv {
                 css {
@@ -64,11 +61,10 @@ class VideoPlayer : RComponent<VideoPlayerProps, RState>() {
     }
 }
 
-fun RBuilder.videoPlayer(handler: VideoPlayerProps.() -> Unit): ReactElement {
-    return child(VideoPlayer::class) {
-        this.attrs(handler)
+fun RBuilder.videoPlayer(handler: VideoPlayerProps.() -> Unit): ReactElement =
+    child(VideoPlayer::class) {
+        attrs(handler)
     }
-}
 
 external interface VideoPlayerProps : RProps {
     var video: Video
