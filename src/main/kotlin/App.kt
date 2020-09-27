@@ -1,6 +1,8 @@
 import kotlinx.browser.window
 import kotlinx.coroutines.*
+import kotlinx.html.js.onClickFunction
 import react.*
+import react.dom.button
 import react.dom.h1
 import react.dom.h3
 
@@ -18,6 +20,9 @@ class App : RComponent<RProps, AppState>() {
     override fun RBuilder.render() {
         h1 {
             +"KotlinConf Explorer"
+        }
+        child(counter) {
+
         }
         h3 {
             +"Videos to watch"
@@ -78,4 +83,12 @@ suspend fun fetchVideos(): List<Video> = coroutineScope {
             fetchVideo(id)
         }
     }.awaitAll()
+}
+
+val counter = functionalComponent<RProps> {
+    val (count, setCount) = useState(0)
+    button {
+        attrs.onClickFunction = { setCount(count + 1) }
+        +count.toString()
+    }
 }
