@@ -1,5 +1,7 @@
 import kotlinx.browser.document
 import kotlinx.css.*
+import kotlinx.serialization.Serializable
+import react.child
 import react.dom.render
 import styled.injectGlobal
 
@@ -15,8 +17,15 @@ fun main() {
     }
 
     render(document.getElementById("root")) {
-        child(App::class) {}
+        child(App) {}
     }
 }
 
-data class Video(val id: Int, val title: String, val speaker: String, val videoUrl: String, var watched: Boolean)
+@Serializable
+data class Video(
+    val id: Int,
+    val title: String,
+    val speaker: String,
+    val videoUrl: String,
+    val watched: Boolean = false
+)
