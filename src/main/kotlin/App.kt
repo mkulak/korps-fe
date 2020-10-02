@@ -51,8 +51,7 @@ class App : RComponent<RProps, AppState>() {
 
     fun onWatch(video: Video) {
         setState {
-            videos.remove(video.id)
-            videos[video.id] = video.copy(watched = !video.watched)
+            video.watched = !video.watched
         }
     }
     fun setSelectedVideo(videoId: Int) {

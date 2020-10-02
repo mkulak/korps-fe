@@ -19,4 +19,4 @@ fun main() {
     }
 }
 
-data class Video(val id: Int, val title: String, val speaker: String, val videoUrl: String, val watched: Boolean)
+data class Video(val id: Int, val title: String, val speaker: String, val videoUrl: String, var watched: Boolean)
