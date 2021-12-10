@@ -1,31 +1,21 @@
 import kotlinx.browser.document
-import kotlinx.css.*
-import kotlinx.serialization.Serializable
-import react.child
-import react.dom.render
-import styled.injectGlobal
+import kotlinx.browser.window
+import org.w3c.dom.HTMLDivElement
+import kotlinx.browser.*
+import kotlinx.html.*
+import kotlinx.html.dom.*
 
 fun main() {
-    injectGlobal {
-        body {
-            margin(0.px)
-            padding(20.px)
-            fontSize = 20.px
-            fontFamily = "Open Sans"
-//            backgroundColor = Color.red
+//    window.onload = { event ->
+//        val root = document.getElementById("root") as HTMLDivElement
+////        root.innerHTML = h1 {
+////            "<h1>Hello korps-fe</h1>"
+////        }
+//        Unit
+//    }
+    document.body!!.append.div {
+        h1 {
+            +"Welcome to Kotlin"
         }
     }
-
-    render(document.getElementById("root")) {
-        child(App) {}
-    }
 }
-
-@Serializable
-data class Video(
-    val id: Int,
-    val title: String,
-    val speaker: String,
-    val videoUrl: String,
-    val watched: Boolean = false
-)
